@@ -1,0 +1,14 @@
+{
+    "header":{
+        "languages": "Nyelvek"
+    },
+    "reactiveForm":{
+        "firstName": "Keresztnév:",
+        "lastName": "Vezetéknév:",
+        "address": "Cím:",
+        "street": "Utca:",
+        "city": "Város:",
+        "state": "Megye:",
+        "zip": "Irányítószám:"
+    } 
+}

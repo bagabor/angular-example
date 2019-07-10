@@ -1,0 +1,14 @@
+{
+    "header":{
+        "languages": "Languages"
+    },
+    "reactiveForm":{
+        "firstName": "First Name:",
+        "lastName": "Last Name:",
+        "address": "Address:",
+        "street": "Street:",
+        "city": "City:",
+        "state": "State:",
+        "zip": "Zip Code:"
+    } 
+}

@@ -1,0 +1,6 @@
+<div class="header-style">
+    <p-menu [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #menu [popup]="true"
+        [model]="languages"></p-menu>
+    <button id="languagePickerButton" type="button" pButton icon="pi pi-bars" (click)="menu.toggle($event)"
+        class="language-picker" label="{{'header.languages' | translate}}"></button>
+</div>

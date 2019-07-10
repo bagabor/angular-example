@@ -1,0 +1,86 @@
+<div class="container col-lg-3">
+    <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
+        <div>
+            <label>
+                {{ 'reactiveForm.firstName' | translate }}
+                <input type="text" class="form-control" formControlName="firstName" id="firstName" required>
+                <div *ngIf='firstNameMessage' class="alert alert-danger">
+                    {{ firstNameMessage }}
+                </div>
+            </label>
+        </div>
+        <div>
+            <label>
+                {{ 'reactiveForm.lastName' | translate }}
+                <input type="text" class="form-control" formControlName="lastName" required>
+                <div *ngIf='lastNameMessage' class="alert alert-danger">
+                    {{ lastNameMessage }}
+                </div>
+                <div *ngIf="profileForm.errors?.identityRevealed && (profileForm.touched || profileForm.dirty)"
+                    class="cross-validation-error-message alert alert-danger">
+                    Name cannot match alter ego.
+                </div>
+            </label>
+        </div>
+        <div formGroupName="address">
+            <h3>
+                {{ 'reactiveForm.address' | translate }}
+            </h3>
+            <div>
+                <label>
+                    {{ 'reactiveForm.street' | translate }}
+                    <input type="text" class="form-control" formControlName="street" required>
+                    <div *ngIf='streetMessage' class="alert alert-danger">
+                        {{ streetMessage }}
+                    </div>
+                </label>
+            </div>
+            <div>
+                <label>
+                    {{ 'reactiveForm.city' | translate }}
+                    <input type="text" class="form-control" formControlName="city" required>
+                    <div *ngIf='cityMessage' class="alert alert-danger">
+                        {{ cityMessage }}
+                    </div>
+                </label>
+            </div>
+            <div>
+                <label>
+                    {{ 'reactiveForm.state' | translate }}
+                    <input type="text" class="form-control" formControlName="state" required>
+                    <div *ngIf='stateMessage' class="alert alert-danger">
+                        {{ stateMessage }}
+                    </div>
+                </label>
+            </div>
+            <div>
+                <label>
+                    {{ 'reactiveForm.zip' | translate }}
+                    <input type="text" class="form-control" formControlName="zip" required>
+                    <div *ngIf='zipMessage' class="alert alert-danger">
+                        {{ zipMessage }}
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div formArrayName="aliases">
+            <h3>Aliases</h3>
+            <button (click)="addAliases()">Add Alias</button>
+
+            <div *ngFor="let alias of aliases.controls; let i = index">
+                <label>
+                    Alias:
+                    <input type="text" class="form-control" [formControlName]="i">
+                </label>
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-success" [disabled]="!profileForm.valid">Submit</button>
+
+        <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
+
+        <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+    </form>
+</div>
