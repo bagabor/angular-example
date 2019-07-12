@@ -10,6 +10,8 @@ import { ReactiveDrivenFormModule } from './components/reactive-driven-form-comp
 import { TemplateDrivenFormModule } from './components/template-driven-form-component/template-driven-form-modul';
 import { WelcomeModuleModule } from './components/welcome-component/welcome-module.module';
 import { HttpExampleModule } from './components/http-example-component/http-example.module';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './shared/in-memory-data.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,10 @@ import { HttpExampleModule } from './components/http-example-component/http-exam
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    HttpClientInMemoryWebApiModule.forRoot(
+      //passThruUnknownUrl: true is needed for localization
+      InMemoryDataService, { passThruUnknownUrl: true })
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

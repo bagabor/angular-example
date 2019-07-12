@@ -4,10 +4,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { HeaderComponent } from './header/header.component';
-import { HttpExampleComponent } from './http-example/http-example.component';
 
 @NgModule({
-  declarations: [HeaderComponent, HttpExampleComponent],
+  declarations: [HeaderComponent],
   imports: [
     CommonModule,
     MenuModule,
