@@ -5,11 +5,11 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderModule } from './header/header.module';
-import { ReactiveDrivenFormModule } from './reactive-driven-form/reactive-driven-form.module';
-import { TemplateDrivenFormModule } from './template-driven-form/template-driven-form-modul.module';
-import { WelcomeModuleModule } from './welcome-module/welcome-module.module';
-
+import { HeaderModule } from './components/header-component/header.module';
+import { ReactiveDrivenFormModule } from './components/reactive-driven-form-component/reactive-driven-form.module';
+import { TemplateDrivenFormModule } from './components/template-driven-form-component/template-driven-form-modul';
+import { WelcomeModuleModule } from './components/welcome-component/welcome-module.module';
+import { HttpExampleModule } from './components/http-example-component/http-example.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { WelcomeModuleModule } from './welcome-module/welcome-module.module';
     TemplateDrivenFormModule,
     ReactiveDrivenFormModule,
     HeaderModule,
+    HttpExampleModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
