@@ -10,11 +10,14 @@ import { Calendar } from 'primeng/calendar';
 })
 export class DateSideBarComponent implements OnInit {
 
-  @ViewChild('calendarInput', {static: false}) calendar: Calendar;
+  @ViewChild('rangeCalendarInput', {static: false}) rangeCalendar: Calendar;
+  @ViewChild('multipleCalendarInput', {static: false}) multipleCalendar: Calendar;  
 
-  @Output() dateSubmitter: EventEmitter<object> = new EventEmitter<object>();
+  @Output() dateSubmitterWithRange: EventEmitter<object> = new EventEmitter<object>();
+  @Output() dateSubmitterWithMultipleDates: EventEmitter<object> = new EventEmitter<object>();
   @Output() dateCleaner: EventEmitter<object> = new EventEmitter<object>();
   rangeDates: Date[];
+  multipleDates: Date[];
 
   constructor(private confirmationService: ConfirmationService, private router: Router) { }
 
@@ -22,13 +25,18 @@ export class DateSideBarComponent implements OnInit {
   }
 
   onClear(): void {
-    this.calendar.value = null;
-    this.calendar.updateInputfield();
-    this.dateCleaner.emit();
+    this.calendarCleaner(this.rangeCalendar, this.rangeDates);
+    this.calendarCleaner(this.multipleCalendar, this.multipleDates);
+    this.dateCleaner.emit();    
   }
 
   onSubmit(): void {
-    this.dateSubmitter.emit(this.rangeDates);
+    //This solution is just for demo purposes
+    if(this.rangeDates !== undefined && this.rangeDates.length > 0) {
+      this.dateSubmitterWithRange.emit(this.rangeDates);
+    }else{
+      this.dateSubmitterWithMultipleDates.emit(this.multipleDates);
+    }
   }
 
   onBack(): void {
@@ -38,5 +46,17 @@ export class DateSideBarComponent implements OnInit {
         this.router.navigateByUrl('');
       }
     });
+  }
+
+  calendarArrayCleaner(array): void{
+    if(array !== undefined && array !== null) {
+      array.length = 0;
+    }
+  }
+
+  calendarCleaner(calendar: Calendar, array: Date[]): void {
+    calendar.value = null;
+    calendar.updateInputfield();
+    this.calendarArrayCleaner(array);
   }
 }

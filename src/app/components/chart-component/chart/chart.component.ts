@@ -21,8 +21,21 @@ export class ChartComponent implements OnInit {
     this.chartSetup();
   }
 
-  onDateSubmitted(rangeDates: Date[]): void {
-    const mapOFValues = this.dateService.getValues(rangeDates);
+  onDateSubmittedWithRange(rangeDates: Date[]): void {
+    const mapOFValues = this.dateService.getValuesWithRange(rangeDates);
+    let numberOfArrayIndex = 0;
+
+    this.dataSetCleaner();
+    mapOFValues.forEach((value: string, key: string) => {
+      this.data['labels'][numberOfArrayIndex] = key;
+      this.data['datasets'][0]['data'][numberOfArrayIndex] = mapOFValues.get(key);
+      numberOfArrayIndex++;
+    });
+    this.chart.refresh();
+  }
+
+  onDateSubmittedForDates(dates: Date[]): void {
+    const mapOFValues = this.dateService.getValuesForDates(dates);
     let numberOfArrayIndex = 0;
 
     this.dataSetCleaner();

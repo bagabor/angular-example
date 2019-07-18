@@ -2,9 +2,13 @@
     <div id="back-button">
         <button type="button" class="btn btn-default" (click)="onBack()">Back</button>
     </div>
+
+    <h3>Multiple Dates</h3>
+    <p-calendar [(ngModel)]="multipleDates" selectionMode="range" [readonlyInput]="true" [showIcon]="true" [numberOfMonths]="3"
+        dateFormat="yy-mm-dd" selectionMode="multiple" #multipleCalendarInput></p-calendar>
     <h3>Range</h3>
-    <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" [showIcon]="true"
-        [numberOfMonths]="3" dateFormat="yy-mm-dd" #calendarInput></p-calendar>
+    <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" [showIcon]="true" [numberOfMonths]="3"
+        dateFormat="yy-mm-dd" #rangeCalendarInput></p-calendar>
     <div id="button-container">
         <div id="submit-button-container">
             <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
