@@ -3,14 +3,15 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MyChartModule } from './components/chart-component/chart.module';
 import { HeaderModule } from './components/header-component/header.module';
+import { HttpExampleModule } from './components/http-example-component/http-example.module';
 import { ReactiveDrivenFormModule } from './components/reactive-driven-form-component/reactive-driven-form.module';
 import { TemplateDrivenFormModule } from './components/template-driven-form-component/template-driven-form-modul';
 import { WelcomeModuleModule } from './components/welcome-component/welcome-module.module';
-import { HttpExampleModule } from './components/http-example-component/http-example.module';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './shared/in-memory-data.service';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { InMemoryDataService } from './shared/in-memory-data.service';
     TemplateDrivenFormModule,
     ReactiveDrivenFormModule,
     HeaderModule,
+    MyChartModule,
     HttpExampleModule,
     HttpClientModule,
     TranslateModule.forRoot({

@@ -1,2 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+@import url("https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css");
+
+//calendar width in order to show the whole range
+p-calendar span {
+  width: 60%;
+  input {
+    width: 80%;
+  }
+  button {
+    position: relative;
+    top: 1px;
+    span:nth-child(2) {
+      border: 0.5px solid #007ad9 !important;
+    }
+  }
+}

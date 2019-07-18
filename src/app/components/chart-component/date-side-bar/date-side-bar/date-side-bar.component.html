@@ -1,0 +1,18 @@
+<div>
+    <div id="back-button">
+        <button type="button" class="btn btn-default" (click)="onBack()">Back</button>
+    </div>
+    <h3>Range</h3>
+    <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" [showIcon]="true"
+        [numberOfMonths]="3" dateFormat="yy-mm-dd" #calendarInput></p-calendar>
+    <div id="button-container">
+        <div id="submit-button-container">
+            <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+        </div>
+        <div id="cancel-button-container">
+            <button type="button" class="btn btn-default" (click)="onClear()">Clear</button>
+        </div>
+    </div>
+</div>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

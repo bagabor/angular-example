@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { debounceTime } from 'rxjs/operators';
 import { forbiddenNameValidator, identityRevealedValidator, validationMessages } from 'src/app/shared/validation.directive';
@@ -41,6 +40,27 @@ export class ReactiveDrivenComponent implements OnInit {
     }, { validators: identityRevealedValidator });
 
     this.setupValidation();
+  }
+
+  onSubmit(): void {
+    this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Saved Hero' });
+  }
+
+  onCancel(): void {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to leave this page?',
+      accept: () => {
+        this.router.navigateByUrl('');
+      }
+    });
+  }
+
+  get aliases() {
+    return this.profileForm.get('aliases') as FormArray;
+  }
+
+  addAliases() {
+    (this.profileForm.get('aliases') as FormArray).push(this.fb.control(''));
   }
 
   //added validation on every input
@@ -96,26 +116,4 @@ export class ReactiveDrivenComponent implements OnInit {
     }
     return controlMessage;
   }
-
-  onSubmit(): void {
-    console.log('submitted');
-  }
-
-  onCancel(): void {
-    this.confirmationService.confirm({
-      message: 'Are you sure that you want to leave this page?',
-      accept: () => {
-        this.router.navigateByUrl('');
-      }
-    });
-  }
-
-  get aliases() {
-    return this.profileForm.get('aliases') as FormArray;
-  }
-
-  addAliases() {
-    (this.profileForm.get('aliases') as FormArray).push(this.fb.control(''));
-  }
-
 }

@@ -1,0 +1,8 @@
+<div id="chart-screen-container-div">
+    <div id="side-bar-div" class="col-lg-3">
+        <app-date-side-bar (dateSubmitter)='onDateSubmitted($event)' (dateCleaner)='onDateCleaned($event)' #sideBar></app-date-side-bar>
+    </div>
+    <div id="content-div" class="col-lg-9">
+        <p-chart type="bar" [options]="options" [data]="data" #usageChart></p-chart>
+    </div>
+</div>
