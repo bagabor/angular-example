@@ -6,7 +6,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MyChartModule } from './components/chart-component/chart.module';
+import { ChartContainerModule } from './components/chart-container-component/chart-container.module';
 import { HeaderModule } from './components/header-component/header.module';
 import { HttpExampleModule } from './components/http-example-component/http-example.module';
 import { ReactiveDrivenFormModule } from './components/reactive-driven-form-component/reactive-driven-form.module';
@@ -25,7 +25,8 @@ import { InMemoryDataService } from './shared/in-memory-data.service';
     TemplateDrivenFormModule,
     ReactiveDrivenFormModule,
     HeaderModule,
-    MyChartModule,
+    // MyChartModule,
+    ChartContainerModule,
     HttpExampleModule,
     HttpClientModule,
     TranslateModule.forRoot({

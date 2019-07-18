@@ -10,6 +10,9 @@ import { DateSideBarModule } from './date-side-bar/date-side-bar.module';
     CommonModule,
     ChartModule,
     DateSideBarModule
+  ],
+  exports: [
+    ChartComponent
   ]
 })
 export class MyChartModule { }
