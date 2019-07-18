@@ -1,2 +1,7 @@
-<p-tabMenu [model]="items" [activeItem]="items[0]"></p-tabMenu>
-<app-chart></app-chart>
+<p-tabMenu [model]="items" [activeItem]="activeItem" (click)="activateMenu()" #tabMenu></p-tabMenu>
+<div *ngIf="activeItem === items[0]">
+    <app-chart></app-chart>
+</div>
+<div *ngIf="activeItem === items[1]">
+    <app-data-table></app-data-table>
+</div>

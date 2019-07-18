@@ -27,7 +27,7 @@ export class DateService {
     }
     return map;
   }
-  
+
   getValuesForDates(dates: Date[]) {
     let map = new Map();
     for (let i = 0; i < dates.length; i++) {
@@ -36,4 +36,35 @@ export class DateService {
     }
     return map;
   }
+
+  getRowData(dates: Date[]) {
+
+    type dataArray = Array<{ deviceId: number, dataTypeId: string, value: boolean, time: any }>;
+
+    const arr: dataArray = [
+      { deviceId: 1, dataTypeId: '0', value: true, time: '2019-02-21 15:40:11' },
+      { deviceId: 1, dataTypeId: '0', value: false, time: '2019-02-21 15:50:10' },
+      { deviceId: 1, dataTypeId: '0', value: false, time: '2019-02-21 18:40:00' },
+      { deviceId: 1, dataTypeId: '0', value: true, time: '2019-02-21 19:30:15' },
+      { deviceId: 1, dataTypeId: '0', value: true, time: '2019-02-21 20:49:11' },
+      { deviceId: 1, dataTypeId: '0', value: true, time: '2019-02-22 15:40:11' },
+      { deviceId: 1, dataTypeId: '0', value: false, time: '2019-02-22 15:50:10' },
+      { deviceId: 1, dataTypeId: '0', value: false, time: '2019-02-22 18:40:00' },
+      { deviceId: 1, dataTypeId: '0', value: true, time: '2019-02-22 19:30:15' },
+      { deviceId: 1, dataTypeId: '0', value: true, time: '2019-02-22 20:49:11' },
+      { deviceId: 1, dataTypeId: '1', value: true, time: '2019-02-23 15:40:11' },
+      { deviceId: 1, dataTypeId: '1', value: false, time: '2019-02-23 15:50:10' },
+      { deviceId: 1, dataTypeId: '1', value: false, time: '2019-02-23 18:40:00' },
+      { deviceId: 1, dataTypeId: '1', value: true, time: '2019-02-23 19:30:15' },
+      { deviceId: 1, dataTypeId: '1', value: true, time: '2019-02-23 20:49:11' },
+      { deviceId: 2, dataTypeId: '0', value: true, time: '2019-02-24 15:40:11' },
+      { deviceId: 2, dataTypeId: '0', value: false, time: '2019-02-24 15:50:10' },
+      { deviceId: 2, dataTypeId: '0', value: false, time: '2019-02-24 18:40:00' },
+      { deviceId: 2, dataTypeId: '0', value: true, time: '2019-02-24 19:30:15' },
+      { deviceId: 2, dataTypeId: '0', value: true, time: '2019-02-24 20:49:11' }
+    ];
+
+    return arr;
+  }
+
 }
