@@ -16,7 +16,7 @@
         </p-calendar>
 
         <div>
-            <button type="button" class="btn btn-success" [disabled]="!detailsButtonHandler()">Details</button>
+            <button type="button" class="btn btn-success" (click)="onDetails()" [disabled]="!detailsButtonHandler()">Details</button>
         </div>
 
         <div id="button-container">

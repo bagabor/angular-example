@@ -12,12 +12,14 @@ import { dateRequireValidator } from 'src/app/shared/validation.directive';
 })
 export class DateSideBarComponent implements OnInit {
 
-  @ViewChild('rangeCalendarInput', {static: false}) rangeCalendar: Calendar;
-  @ViewChild('multipleCalendarInput', {static: false}) multipleCalendar: Calendar;
+  @ViewChild('rangeCalendarInput', { static: false }) rangeCalendar: Calendar;
+  @ViewChild('multipleCalendarInput', { static: false }) multipleCalendar: Calendar;
 
   @Output() dateSubmitterWithRange: EventEmitter<object> = new EventEmitter<object>();
   @Output() dateSubmitterWithMultipleDates: EventEmitter<object> = new EventEmitter<object>();
+  @Output() dateSubmitterWithDetails: EventEmitter<object> = new EventEmitter<object>();
   @Output() dateCleaner: EventEmitter<object> = new EventEmitter<object>();
+
 
   calendarForm: FormGroup;
 
@@ -45,7 +47,7 @@ export class DateSideBarComponent implements OnInit {
     const rangeValues = this.calendarForm.get('rangeCalendarComponent').value as Array<object>;
 
     //This solution is just for demo purposes
-    if (rangeValues !== undefined &&  rangeValues.length > 0) {
+    if (rangeValues !== undefined && rangeValues.length > 0) {
       this.dateSubmitterWithRange.emit(rangeValues);
     } else {
       this.dateSubmitterWithMultipleDates.emit(multipleValues);
@@ -61,6 +63,17 @@ export class DateSideBarComponent implements OnInit {
     });
   }
 
+  onDetails(): void {
+    const multipleValues = this.calendarForm.get('multipleCalendarComponent').value as Array<object>;
+    const rangeValues = this.calendarForm.get('rangeCalendarComponent').value as Array<object>;
+    
+    if (rangeValues !== undefined && rangeValues[1] === null) {
+      this.dateSubmitterWithDetails.emit(rangeValues);
+    } else if (multipleValues !== undefined && multipleValues.length == 1) {
+      this.dateSubmitterWithDetails.emit(multipleValues);
+    }    
+  }
+
   calendarCleaner(calendar: Calendar): void {
     calendar.value = null;
     calendar.updateInputfield();
@@ -70,10 +83,9 @@ export class DateSideBarComponent implements OnInit {
     const multipleValues = this.calendarForm.get('multipleCalendarComponent').value as Array<object>;
     const rangeValues = this.calendarForm.get('rangeCalendarComponent').value as Array<object>;
 
-    console.log(rangeValues);
-    if( rangeValues !== undefined &&  rangeValues[1] === null){
+    if (rangeValues !== undefined && rangeValues[1] === null) {
       return true;
-    } else if (multipleValues !== undefined &&  multipleValues.length == 1){
+    } else if (multipleValues !== undefined && multipleValues.length == 1) {
       return true;
     }
     return false;

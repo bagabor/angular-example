@@ -40,10 +40,24 @@ export class ChartComponent implements OnInit {
 
     this.dataSetCleaner();
     mapOFValues.forEach((value: string, key: string) => {
+      //exact date
       this.data['labels'][numberOfArrayIndex] = key;
+      //exact value
       this.data['datasets'][0]['data'][numberOfArrayIndex] = mapOFValues.get(key);
       numberOfArrayIndex++;
     });
+    this.chart.refresh();
+  }
+
+  onDateSubmittedWithDetails(): void {
+    let numberOfArrayIndex = 0;
+
+    this.dataSetCleaner();
+    for(let i= 0; i< 24; i++){
+      this.data['labels'][i] = i;
+      this.data['datasets'][0]['data'][numberOfArrayIndex] = 100;
+      numberOfArrayIndex++;
+    }
     this.chart.refresh();
   }
 

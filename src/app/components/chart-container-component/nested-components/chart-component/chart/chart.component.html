@@ -2,6 +2,7 @@
     <div id="side-bar-div" class="col-lg-3">
         <app-date-side-bar (dateSubmitterWithRange)='onDateSubmittedWithRange($event)' 
         (dateSubmitterWithMultipleDates)='onDateSubmittedForDates($event)' 
+        (dateSubmitterWithDetails)='onDateSubmittedWithDetails($event)'
         (dateCleaner)='onDateCleaned($event)' #sideBar></app-date-side-bar>
     </div>
     <div id="content-div" class="col-lg-9">
