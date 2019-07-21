@@ -16,7 +16,6 @@ export class DataTableComponent implements OnInit {
 
   ngOnInit() {
 
-    
     this.rawData = this.dateService.getRowData(this.mockedDateArray);
 
     this.cols = [
@@ -25,8 +24,6 @@ export class DataTableComponent implements OnInit {
       { field: 'value', header: 'Value' },
       { field: 'time', header: 'Time' }
     ];
-
-    console.log(this.rawData);
   }
 
 }

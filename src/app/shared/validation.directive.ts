@@ -22,3 +22,15 @@ export const validationMessages = {
     forbiddenName: 'This value is forbidden',
     minlength: 'Given value is too short'
 }
+
+//cross validation: any of the dates has to be filled
+export const dateRequireValidator: ValidatorFn = (formGroup: FormGroup): ValidationErrors | null => {
+    const multiValue = formGroup.get('multipleCalendarComponent').value;
+    const rangeValue = formGroup.get('rangeCalendarComponent').value;
+    // debugger;
+    // return  { 'dateRequire': true };
+    if ( ( multiValue === '' || multiValue === undefined) && (rangeValue === '' || rangeValue === undefined )  ) {
+            return { 'dateRequire' : true };
+    }
+    return null;
+};

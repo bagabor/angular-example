@@ -1,7 +1,9 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Calendar } from 'primeng/calendar';
+import { dateRequireValidator } from 'src/app/shared/validation.directive';
 
 @Component({
   selector: 'app-date-side-bar',
@@ -11,31 +13,42 @@ import { Calendar } from 'primeng/calendar';
 export class DateSideBarComponent implements OnInit {
 
   @ViewChild('rangeCalendarInput', {static: false}) rangeCalendar: Calendar;
-  @ViewChild('multipleCalendarInput', {static: false}) multipleCalendar: Calendar;  
+  @ViewChild('multipleCalendarInput', {static: false}) multipleCalendar: Calendar;
 
   @Output() dateSubmitterWithRange: EventEmitter<object> = new EventEmitter<object>();
   @Output() dateSubmitterWithMultipleDates: EventEmitter<object> = new EventEmitter<object>();
   @Output() dateCleaner: EventEmitter<object> = new EventEmitter<object>();
-  rangeDates: Date[];
-  multipleDates: Date[];
 
-  constructor(private confirmationService: ConfirmationService, private router: Router) { }
+  calendarForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private confirmationService: ConfirmationService, private router: Router) { }
 
   ngOnInit() {
+    this.calendarForm = this.fb.group({
+      multipleCalendarComponent: [''],
+      rangeCalendarComponent: ['']
+    }, { validators: dateRequireValidator });
   }
 
   onClear(): void {
-    this.calendarCleaner(this.rangeCalendar, this.rangeDates);
-    this.calendarCleaner(this.multipleCalendar, this.multipleDates);
-    this.dateCleaner.emit();    
+    this.calendarCleaner(this.rangeCalendar);
+    this.calendarCleaner(this.multipleCalendar);
+    this.dateCleaner.emit();
+    this.calendarForm.setValue({
+      multipleCalendarComponent: '',
+      rangeCalendarComponent: ''
+    });
   }
 
   onSubmit(): void {
+    const multipleValues = this.calendarForm.get('multipleCalendarComponent').value as Array<object>;
+    const rangeValues = this.calendarForm.get('rangeCalendarComponent').value as Array<object>;
+
     //This solution is just for demo purposes
-    if(this.rangeDates !== undefined && this.rangeDates.length > 0) {
-      this.dateSubmitterWithRange.emit(this.rangeDates);
-    }else{
-      this.dateSubmitterWithMultipleDates.emit(this.multipleDates);
+    if (rangeValues !== undefined &&  rangeValues.length > 0) {
+      this.dateSubmitterWithRange.emit(rangeValues);
+    } else {
+      this.dateSubmitterWithMultipleDates.emit(multipleValues);
     }
   }
 
@@ -48,15 +61,21 @@ export class DateSideBarComponent implements OnInit {
     });
   }
 
-  calendarArrayCleaner(array): void{
-    if(array !== undefined && array !== null) {
-      array.length = 0;
-    }
-  }
-
-  calendarCleaner(calendar: Calendar, array: Date[]): void {
+  calendarCleaner(calendar: Calendar): void {
     calendar.value = null;
     calendar.updateInputfield();
-    this.calendarArrayCleaner(array);
+  }
+
+  detailsButtonHandler(): boolean {
+    const multipleValues = this.calendarForm.get('multipleCalendarComponent').value as Array<object>;
+    const rangeValues = this.calendarForm.get('rangeCalendarComponent').value as Array<object>;
+
+    console.log(rangeValues);
+    if( rangeValues !== undefined &&  rangeValues[1] === null){
+      return true;
+    } else if (multipleValues !== undefined &&  multipleValues.length == 1){
+      return true;
+    }
+    return false;
   }
 }

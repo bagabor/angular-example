@@ -11,15 +11,15 @@ export class ChartContainerComponent implements OnInit {
   @ViewChild('tabMenu', { static: false }) menu: MenuItem[];
 
   items: MenuItem[];
-  activeItem: MenuItem;  
+  activeItem: MenuItem;
 
   constructor() { }
 
   ngOnInit() {
     this.items = [
-      { label: 'Chart', icon: 'pi pi-chart-bar' },
-      { label: 'Raw Data', icon: 'pi pi-list' },
-      { label: 'Documentation', icon: 'pi pi-info' }
+      { id: 'chartTab', label: 'Chart', icon: 'pi pi-chart-bar' },
+      { id: 'dataTab', label: 'Raw Data', icon: 'pi pi-list' },
+      { id: 'docTab', label: 'Documentation', icon: 'pi pi-info' }
     ];
     this.activeItem = this.items[0];
   }

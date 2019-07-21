@@ -3,20 +3,32 @@
         <button type="button" class="btn btn-default" (click)="onBack()">Back</button>
     </div>
 
-    <h3>Multiple Dates</h3>
-    <p-calendar [(ngModel)]="multipleDates" selectionMode="range" [readonlyInput]="true" [showIcon]="true" [numberOfMonths]="3"
-        dateFormat="yy-mm-dd" selectionMode="multiple" #multipleCalendarInput></p-calendar>
-    <h3>Range</h3>
-    <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" [showIcon]="true" [numberOfMonths]="3"
-        dateFormat="yy-mm-dd" #rangeCalendarInput></p-calendar>
-    <div id="button-container">
-        <div id="submit-button-container">
-            <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+    <form (ngSubmit)="onSubmit()" [formGroup]="calendarForm">
+
+        <h3>Multiple Dates</h3>
+        <p-calendar selectionMode="range" [readonlyInput]="true" [showIcon]="true" [numberOfMonths]="3"
+            dateFormat="yy-mm-dd" selectionMode="multiple" #multipleCalendarInput
+            formControlName="multipleCalendarComponent"></p-calendar>
+
+        <h3>Range</h3>
+        <p-calendar selectionMode="range" [readonlyInput]="true" [showIcon]="true" [numberOfMonths]="3"
+            dateFormat="yy-mm-dd" #rangeCalendarInput formControlName="rangeCalendarComponent">
+        </p-calendar>
+
+        <div>
+            <button type="button" class="btn btn-success" [disabled]="!detailsButtonHandler()">Details</button>
         </div>
-        <div id="cancel-button-container">
-            <button type="button" class="btn btn-default" (click)="onClear()">Clear</button>
+
+        <div id="button-container">
+            <div id="submit-button-container">
+                <button type="submit" class="btn btn-success" [disabled]="!calendarForm.valid">Submit</button>
+            </div>
+            <div id="cancel-button-container">
+                <button type="button" class="btn btn-default" (click)="onClear()">Clear</button>
+            </div>
         </div>
-    </div>
+
+    </form>
 </div>
 
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
